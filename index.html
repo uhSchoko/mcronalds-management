@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>McRonalds | Management Portal</title>
+<style>
+:root{--red:#c9272c;--red2:#a91e25;--yellow:#ffc928;--ink:#202124;--muted:#727781;--bg:#f5f6f8;--line:#e8e9ed;--white:#fff;--green:#168653}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--bg);color:var(--ink)}
+button,input,select,textarea{font:inherit}button{cursor:pointer}.shell{display:flex;min-height:100vh}.sidebar{width:252px;background:#17191d;color:#fff;padding:24px 16px;display:flex;flex-direction:column;gap:22px;flex-shrink:0}
+.brand{display:flex;align-items:center;gap:12px;padding:0 8px 18px;border-bottom:1px solid #34363b}.logo{width:42px;height:42px;border-radius:13px;background:var(--yellow);color:var(--red);font-weight:1000;font-size:26px;display:grid;place-items:center}.brand strong{display:block;font-size:16px;letter-spacing:.3px}.brand small{color:#aeb2ba;font-size:11px;letter-spacing:1.4px;text-transform:uppercase}
+.nav-label{font-size:10px;letter-spacing:1.5px;color:#858a94;padding:0 12px;margin:5px 0}.nav{display:grid;gap:5px}.nav button{border:0;background:transparent;color:#c9cbd0;text-align:left;padding:11px 12px;border-radius:9px;display:flex;align-items:center;gap:12px;font-size:13px}.nav button:hover,.nav button.active{background:#303238;color:#fff}.nav button.active{box-shadow:inset 3px 0 var(--yellow)}.ico{width:18px;text-align:center;font-size:15px}.side-bottom{margin-top:auto;border-top:1px solid #34363b;padding:16px 8px 0;color:#aeb2ba;font-size:11px;line-height:1.6}
+.main{flex:1;min-width:0}.topbar{height:76px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 34px;position:sticky;top:0;z-index:5}.crumb{font-size:13px;color:var(--muted)}.crumb b{color:var(--ink)}.user{display:flex;align-items:center;gap:10px;font-size:12px}.avatar{width:34px;height:34px;border-radius:50%;background:#fff0c2;color:#8a5b00;display:grid;place-items:center;font-weight:800}.content{padding:30px 34px;max-width:1440px;margin:auto}.page-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:24px}.eyebrow{color:var(--red);font-size:10px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase}.page-head h1{font-size:26px;margin:6px 0}.sub{color:var(--muted);font-size:13px}.btn{border:0;border-radius:8px;padding:10px 15px;font-weight:700;font-size:12px}.primary{background:var(--red);color:#fff}.primary:hover{background:var(--red2)}.secondary{background:#fff;border:1px solid var(--line);color:#333}.yellow{background:var(--yellow);color:#352600}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}.stat,.panel{background:#fff;border:1px solid var(--line);border-radius:12px}.stat{padding:18px}.stat-top{display:flex;justify-content:space-between;color:var(--muted);font-size:11px}.stat-icon{width:30px;height:30px;border-radius:9px;background:#fff1d0;display:grid;place-items:center}.stat strong{display:block;font-size:26px;margin:12px 0 3px}.stat small{font-size:11px;color:var(--muted)}.two-col{display:grid;grid-template-columns:1.35fr 1fr;gap:14px;margin-top:16px}.panel{padding:20px}.panel h3{font-size:14px;margin:0 0 5px}.panel p{font-size:11px;color:var(--muted);margin:0 0 16px}.table-wrap{overflow:auto}table{width:100%;border-collapse:collapse;font-size:12px}th{text-align:left;color:#858a94;font-size:10px;text-transform:uppercase;letter-spacing:.8px;padding:12px 10px;border-bottom:1px solid var(--line)}td{padding:13px 10px;border-bottom:1px solid #f0f1f3}tr:last-child td{border-bottom:0}.person{display:flex;align-items:center;gap:9px}.mini{width:29px;height:29px;border-radius:9px;background:#fce8e8;color:var(--red);display:grid;place-items:center;font-weight:800}.muted{color:var(--muted)}.pill{display:inline-block;padding:5px 8px;border-radius:30px;background:#f1f2f4;color:#555;font-size:10px;font-weight:700}.pill.green{background:#e6f5ed;color:#167347}.pill.yellow{background:#fff4d2;color:#8a6200}.pill.red{background:#fde9e9;color:#b21f27}.activity{display:grid;gap:15px}.event{display:flex;gap:11px;align-items:flex-start}.event-dot{width:8px;height:8px;border-radius:50%;background:var(--red);margin:5px 2px}.event b{font-size:12px}.event small{display:block;color:var(--muted);font-size:10px;margin-top:3px}
+.toolbar{display:flex;gap:9px;align-items:center;margin-bottom:14px;flex-wrap:wrap}.search{border:1px solid var(--line);background:#fff;border-radius:8px;padding:10px 12px;min-width:220px;font-size:12px}.empty{padding:30px;text-align:center;color:var(--muted);font-size:12px}.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.field label{display:block;font-size:10px;font-weight:800;color:#656b75;margin-bottom:6px;text-transform:uppercase;letter-spacing:.6px}.field input,.field select,.field textarea{width:100%;border:1px solid var(--line);border-radius:8px;padding:10px;font-size:12px;background:#fff}.field textarea{min-height:80px;resize:vertical}.modal-bg{position:fixed;inset:0;background:#1119;display:none;align-items:center;justify-content:center;padding:20px;z-index:20}.modal{width:min(520px,100%);background:#fff;border-radius:14px;padding:22px;box-shadow:0 20px 60px #0003}.modal h2{font-size:18px;margin:0 0 5px}.modal .sub{margin-bottom:18px}.modal-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:18px}.notice{background:#fff8e5;border:1px solid #f4dfa1;color:#705400;border-radius:10px;padding:13px 15px;font-size:11px;line-height:1.5;margin-bottom:18px}.login{position:fixed;inset:0;background:linear-gradient(135deg,#17191d 0%,#292c32 65%,#a91e25 150%);display:flex;align-items:center;justify-content:center;padding:20px;z-index:50}.login-card{width:min(410px,100%);background:#fff;border-radius:18px;padding:32px;text-align:center}.login-logo{width:60px;height:60px;border-radius:17px;background:var(--yellow);color:var(--red);font-size:37px;font-weight:1000;display:grid;place-items:center;margin:0 auto 17px}.login-card h1{font-size:22px;margin:0}.login-card p{font-size:12px;color:var(--muted);line-height:1.6}.login-card .btn{width:100%;margin-top:9px;padding:13px}.fine{font-size:10px!important;margin-top:16px}.mobile-menu{display:none}
+@media(max-width:900px){.sidebar{width:215px}.grid{grid-template-columns:repeat(2,1fr)}.content{padding:24px 20px}.topbar{padding:0 20px}}
+@media(max-width:650px){.sidebar{position:fixed;left:-260px;top:0;bottom:0;z-index:10;transition:.2s}.sidebar.open{left:0}.mobile-menu{display:inline-block;border:0;background:transparent;font-size:20px}.topbar{height:62px}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.stat{padding:13px}.stat strong{font-size:22px}.two-col{grid-template-columns:1fr}.content{padding:20px 13px}.page-head h1{font-size:22px}.form-grid{grid-template-columns:1fr}}
+</style></head>
+<body>
+<div class="login" id="login">
+ <div class="login-card"><div class="login-logo">R</div><div class="eyebrow">Official company workspace</div><h1>McRonalds Portal</h1><p>One place for our people, progress and operations.</p>
+ <button class="btn primary" onclick="demoLogin()">Enter preview workspace</button>
+ <button class="btn secondary" onclick="showRobloxInfo()">Continue with Roblox (setup required)</button>
+ <p class="fine">Preview mode stores sample records in this browser only. Roblox sign-in must be connected before real employee access.</p>
+ </div>
+</div>
+<div class="shell" id="app" style="display:none">
+<aside class="sidebar" id="sidebar">
+ <div class="brand"><div class="logo">R</div><div><strong>McRonalds</strong><small>Management Portal</small></div></div>
+ <div><div class="nav-label">WORKSPACE</div><div class="nav">
+ <button class="active" data-page="Dashboard" onclick="go('Dashboard',this)"><span class="ico">▦</span>Dashboard</button>
+ <button data-page="Employees" onclick="go('Employees',this)"><span class="ico">♙</span>Employee directory</button>
+ <button data-page="HR Centre" onclick="go('HR Centre',this)"><span class="ico">▤</span>HR centre</button>
+ <button data-page="Promotions" onclick="go('Promotions',this)"><span class="ico">↗</span>Promotions & ranks</button>
+ <button data-page="Activity" onclick="go('Activity',this)"><span class="ico">◷</span>Activity records</button>
+ <button data-page="Training" onclick="go('Training',this)"><span class="ico">▣</span>Training centre</button>
+ <button data-page="Leave of Absence" onclick="go('Leave of Absence',this)"><span class="ico">▱</span>Leave of absence</button>
+ </div></div>
+ <div><div class="nav-label">LEADERSHIP</div><div class="nav">
+ <button data-page="Presidential Controls" onclick="go('Presidential Controls',this)"><span class="ico">♛</span>Presidential controls</button>
+ </div></div>
+ <div class="side-bottom">McRonalds Internal Systems<br>Preview build · v1.0<br>© 2026 McRonalds</div>
+</aside>
+<main class="main"><header class="topbar"><div style="display:flex;align-items:center;gap:12px"><button class="mobile-menu" onclick="document.getElementById('sidebar').classList.toggle('open')">☰</button><div class="crumb">McRonalds <span class="muted">/</span> <b id="crumb">Dashboard</b></div></div><div class="user"><div class="avatar">P</div><div><b>Preview Admin</b><div class="muted">Presidential Team</div></div></div></header><section class="content" id="content"></section></main>
+</div>
+<div class="modal-bg" id="modal"><div class="modal"><h2 id="modal-title">Add record</h2><p class="sub" id="modal-sub">Create a new portal record.</p><div id="modal-body"></div><div class="modal-actions"><button class="btn secondary" onclick="closeModal()">Cancel</button><button class="btn primary" id="modal-save">Save record</button></div></div></div>
+<script>
+const seed={
+ employees:[
+ {name:"Alex Morgan",user:"AlexM_RBLX",rank:"Restaurant Manager",department:"Operations",status:"Active"},
+ {name:"Jamie Carter",user:"JamieCarter",rank:"Senior Staff",department:"Human Resources",status:"Active"},
+ {name:"Taylor Reed",user:"Taylor_R",rank:"Staff",department:"Customer Service",status:"Active"},
+ {name:"Jordan Lee",user:"JordanLeeRB",rank:"Corporate Board",department:"Corporate",status:"Active"},
+ {name:"Casey Brooks",user:"CaseyB_RBLX",rank:"Trainee",department:"Operations",status:"On leave"}],
+ applications:[{name:"Morgan Ellis",type:"Staff Application",status:"Pending",date:"14 Nov 2026"},{name:"Riley Quinn",type:"Management Application",status:"Under review",date:"13 Nov 2026"},{name:"Avery James",type:"Staff Application",status:"Accepted",date:"12 Nov 2026"}],
+ promotions:[{name:"Taylor Reed",from:"Trainee",to:"Staff",by:"Alex Morgan",date:"12 Nov 2026"}],
+ activity:[{name:"Alex Morgan",action:"Hosted a training session",detail:"Operations · 45 minutes",date:"Today, 18:30"},{name:"Jamie Carter",action:"Reviewed an application",detail:"Human Resources",date:"Today, 16:10"},{name:"Taylor Reed",action:"Completed a shift",detail:"Customer Service · 60 minutes",date:"Yesterday"}],
+ trainings:[{title:"New Staff Orientation",host:"Alex Morgan",date:"16 Nov 2026 · 18:00",capacity:"12",status:"Scheduled"}],
+ loa:[{name:"Casey Brooks",reason:"Personal leave",period:"14–20 Nov 2026",status:"Pending"}]
+};
+let db=JSON.parse(localStorage.getItem("mr_portal")||"null")||seed;
+function persist(){localStorage.setItem("mr_portal",JSON.stringify(db))}
+function demoLogin(){document.getElementById('login').style.display='none';document.getElementById('app').style.display='flex';render('Dashboard')}
+function showRobloxInfo(){alert("Roblox sign-in is not active yet. To enable real Roblox identity verification, connect a trusted Roblox verification provider or deploy a server-side verification flow. Never collect Roblox passwords or cookies.");}
+function go(page,el){document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('active'));if(el)el.classList.add('active');document.getElementById('sidebar').classList.remove('open');render(page)}
+function head(title,desc,action=""){return `<div class="page-head"><div><div class="eyebrow">McRonalds internal</div><h1>${title}</h1><div class="sub">${desc}</div></div>${action}</div>`}
+function stat(label,value,icon,foot){return `<div class="stat"><div class="stat-top"><span>${label}</span><span class="stat-icon">${icon}</span></div><strong>${value}</strong><small>${foot}</small></div>`}
+function table(headers,rows){return `<div class="table-wrap"><table><thead><tr>${headers.map(x=>`<th>${x}</th>`).join('')}</tr></thead><tbody>${rows||`<tr><td colspan="${headers.length}" class="empty">No records yet.</td></tr>`}</tbody></table></div>`}
+function person(n){return `<div class="person"><div class="mini">${n.split(' ').map(x=>x[0]).slice(0,2).join('')}</div><b>${n}</b></div>`}
+function render(page){
+ document.getElementById('crumb').textContent=page;let c=document.getElementById('content'),html='';
+ const add=(label,fields,collection)=>openForm(label,fields,collection);
+ if(page==='Dashboard'){
+ html=head('Company overview','A live snapshot of McRonalds people operations and activity.')+
+ `<div class="grid">${stat('TOTAL EMPLOYEES',db.employees.length,'♙','Across all departments')}${stat('PENDING APPLICATIONS',db.applications.filter(x=>x.status==='Pending'||x.status==='Under review').length,'▤','Awaiting HR review')}${stat('PROMOTIONS LOGGED',db.promotions.length,'↗','Recorded in this workspace')}${stat('ACTIVE TRAININGS',db.trainings.filter(x=>x.status==='Scheduled').length,'▣','Upcoming sessions')}</div>
+ <div class="two-col"><div class="panel"><h3>Recent employees</h3><p>Latest entries in the employee directory</p>${table(['EMPLOYEE','RANK','DEPARTMENT'],db.employees.slice(0,4).map(x=>`<tr><td>${person(x.name)}</td><td>${x.rank}</td><td>${x.department}</td></tr>`).join(''))}</div><div class="panel"><h3>Recent activity</h3><p>Latest recorded company actions</p><div class="activity">${db.activity.slice(0,4).map(x=>`<div class="event"><div class="event-dot"></div><div><b>${x.action}</b><small>${x.name} · ${x.date}</small></div></div>`).join('')}</div></div></div>`;
+ }
+ if(page==='Employees'){
+ html=head('Employee directory','Manage employee profiles, Roblox usernames, ranks and departments.',`<button class="btn primary" onclick="openForm('Add employee',['name','user','rank','department','status'],'employees')">＋ Add employee</button>`)
+ +`<div class="toolbar"><input class="search" placeholder="Search employees..." oninput="filterTable(this.value)"><span class="pill">${db.employees.length} employees</span></div><div class="panel" id="table-panel">${employeeTable()}</div>`;
+ }
+ if(page==='HR Centre'){
+ html=head('HR centre','Review staff applications and maintain recruitment records.',`<button class="btn primary" onclick="openForm('Add application',['name','type','status','date'],'applications')">＋ Add application</button>`)
+ +`<div class="notice">HR workflow: add applications, review candidates and update their status. Connect your actual application form before using this with real applicants.</div><div class="panel">${table(['APPLICANT','APPLICATION','SUBMITTED','STATUS','ACTION'],db.applications.map((x,i)=>`<tr><td>${person(x.name)}</td><td>${x.type}</td><td>${x.date}</td><td><span class="pill ${x.status==='Accepted'?'green':x.status==='Pending'?'yellow':' '}">${x.status}</span></td><td><button class="btn secondary" onclick="cycleStatus('applications',${i})">Update</button></td></tr>`).join(''))}</div>`;
+ }
+ if(page==='Promotions'){
+ html=head('Promotions & ranks','Keep a transparent history of employee progression.',`<button class="btn primary" onclick="openForm('Record promotion',['name','from','to','by','date'],'promotions')">＋ Record promotion</button>`)
+ +`<div class="notice">Rank changes entered here are currently portal records only. Live Roblox group rank changes require a secure server-side Roblox Open Cloud integration and appropriate group permissions.</div><div class="panel">${table(['EMPLOYEE','PREVIOUS RANK','NEW RANK','APPROVED BY','DATE'],db.promotions.map(x=>`<tr><td>${person(x.name)}</td><td>${x.from}</td><td><b>${x.to}</b></td><td>${x.by}</td><td>${x.date}</td></tr>`).join(''))}</div>`;
+ }
+ if(page==='Activity'){
+ html=head('Activity records','Log shifts, training attendance, moderation and staff contributions.',`<button class="btn primary" onclick="openForm('Add activity record',['name','action','detail','date'],'activity')">＋ Log activity</button>`)
+ +`<div class="panel">${table(['EMPLOYEE','ACTIVITY','DETAILS','WHEN'],db.activity.map(x=>`<tr><td>${person(x.name)}</td><td><b>${x.action}</b></td><td>${x.detail}</td><td>${x.date}</td></tr>`).join(''))}</div>`;
+ }
+ if(page==='Training'){
+ html=head('Training centre','Schedule sessions and track hosts, capacity and status.',`<button class="btn primary" onclick="openForm('Schedule training',['title','host','date','capacity','status'],'trainings')">＋ Schedule training</button>`)
+ +`<div class="panel">${table(['SESSION','HOST','DATE & TIME','CAPACITY','STATUS'],db.trainings.map(x=>`<tr><td><b>${x.title}</b></td><td>${x.host}</td><td>${x.date}</td><td>${x.capacity}</td><td><span class="pill green">${x.status}</span></td></tr>`).join(''))}</div>`;
+ }
+ if(page==='Leave of Absence'){
+ html=head('Leave of absence','Review employee leave requests and keep availability records.',`<button class="btn primary" onclick="openForm('Add leave request',['name','reason','period','status'],'loa')">＋ Add request</button>`)
+ +`<div class="panel">${table(['EMPLOYEE','REASON','PERIOD','STATUS','ACTION'],db.loa.map((x,i)=>`<tr><td>${person(x.name)}</td><td>${x.reason}</td><td>${x.period}</td><td><span class="pill ${x.status==='Approved'?'green':'yellow'}">${x.status}</span></td><td><button class="btn secondary" onclick="cycleStatus('loa',${i})">Update</button></td></tr>`).join(''))}</div>`;
+ }
+ if(page==='Presidential Controls'){
+ html=head('Presidential controls','Leadership overview and high-level company administration.')
+ +`<div class="notice"><b>Restricted area preview.</b> This screen is visible in the demo. In production, presidential permissions must be enforced by the server/database—not by hiding buttons in the browser.</div><div class="grid">${stat('EMPLOYEE RECORDS',db.employees.length,'♙','Current directory')}${stat('HR CASES',db.applications.length,'▤','All application records')}${stat('LEAVE REQUESTS',db.loa.length,'▱','All leave records')}${stat('TRAINING SESSIONS',db.trainings.length,'▣','All training records')}</div><div class="two-col"><div class="panel"><h3>Leadership checklist</h3><p>Suggested presidential oversight responsibilities</p><div class="activity"><div class="event"><div class="event-dot"></div><div><b>Review department performance</b><small>Monitor activity and staffing levels</small></div></div><div class="event"><div class="event-dot"></div><div><b>Approve senior promotions</b><small>Keep a documented approval trail</small></div></div><div class="event"><div class="event-dot"></div><div><b>Oversee HR standards</b><small>Ensure consistent recruitment decisions</small></div></div></div></div><div class="panel"><h3>Data controls</h3><p>Export a copy of this browser's preview data.</p><button class="btn secondary" onclick="exportData()">Export portal data (JSON)</button> <button class="btn secondary" onclick="resetData()">Reset demo data</button></div></div>`;
+ }
+ c.innerHTML=html;
+}
+function employeeTable(){return table(['EMPLOYEE','ROBLOX USERNAME','RANK','DEPARTMENT','STATUS'],db.employees.map(x=>`<tr><td>${person(x.name)}</td><td>@${x.user}</td><td>${x.rank}</td><td>${x.department}</td><td><span class="pill ${x.status==='Active'?'green':'yellow'}">${x.status}</span></td></tr>`).join(''))}
+function filterTable(q){let rows=db.employees.filter(x=>(x.name+x.user+x.rank+x.department).toLowerCase().includes(q.toLowerCase()));document.getElementById('table-panel').innerHTML=table(['EMPLOYEE','ROBLOX USERNAME','RANK','DEPARTMENT','STATUS'],rows.map(x=>`<tr><td>${person(x.name)}</td><td>@${x.user}</td><td>${x.rank}</td><td>${x.department}</td><td>${x.status}</td></tr>`).join(''))}
+function openForm(title,fields,collection){document.getElementById('modal-title').textContent=title;document.getElementById('modal-sub').textContent='Complete the fields below. This preview saves data in this browser.';document.getElementById('modal-body').innerHTML=`<div class="form-grid">${fields.map(f=>`<div class="field"><label>${f.replace(/([A-Z])/g,' $1')}</label>${f==='status'?`<select id="f_${f}">${(collection==='employees'?['Active','On leave','Inactive']:collection==='applications'?['Pending','Under review','Accepted','Declined']:collection==='loa'?['Pending','Approved','Declined']:['Scheduled','Completed','Cancelled']).map(v=>`<option>${v}</option>`).join('')}</select>`:`<input id="f_${f}" placeholder="Enter ${f}..." ${f==='date'?'value="14 Nov 2026"':''}>`}</div>`).join('')}</div>`;
+ document.getElementById('modal').style.display='flex';document.getElementById('modal-save').onclick=()=>{let obj={};fields.forEach(f=>obj[f]=document.getElementById('f_'+f).value.trim());if(fields.some(f=>!obj[f])){alert('Please complete all fields.');return}db[collection].unshift(obj);persist();closeModal();let active=document.getElementById('crumb').textContent;render(active)}}
+function closeModal(){document.getElementById('modal').style.display='none'}
+function cycleStatus(collection,i){let lists={applications:['Pending','Under review','Accepted','Declined'],loa:['Pending','Approved','Declined']};let a=lists[collection],item=db[collection][i];item.status=a[(a.indexOf(item.status)+1)%a.length];persist();render(collection==='applications'?'HR Centre':'Leave of Absence')}
+function exportData(){let blob=new Blob([JSON.stringify(db,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='mcronalds-portal-data.json';a.click();URL.revokeObjectURL(a.href)}
+function resetData(){if(confirm('Reset all preview records to the original sample data?')){db=JSON.parse(JSON.stringify(seed));persist();render('Presidential Controls')}}
+</script></body></html>
